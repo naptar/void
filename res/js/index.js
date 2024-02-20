@@ -48,7 +48,7 @@ class VoidImageCollection {
             tags.forEach((imgTag) => {
                 var found = false;
                 image.tags.forEach((tag) => {
-                    if (tag != imgTag) found = true;
+                    if (tag == imgTag) found = true;
                 });
                 if (!found) hasTags = false;
             });
