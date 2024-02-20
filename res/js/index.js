@@ -1,4 +1,4 @@
-class ImageCollection {
+class VoidImageCollection {
     images = [];
 
     /**
@@ -36,7 +36,7 @@ class ImageCollection {
     }
 }
 
-class Image {
+class VoidImage {
     name = "";
     tags = [];
     
