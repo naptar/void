@@ -11,7 +11,7 @@ class VoidImageCollection {
     /**
      * @param {Image[]} images
      */
-    set add(images) {
+    add(images) {
         if (Array.isArray(images)) {
             this.images.concat(toString(images));
         }
@@ -24,15 +24,41 @@ class VoidImageCollection {
         }
 
         if (name.length > 0 && tags.length == 0) {
-            return this.images.filter((image) => {
-                return image.name == name;
-            });
+            return this.searchByName(name);
         }
 
         if (name.length == 0 && tags.length > 0) {
-
+            return this.searchByTags(tags);
         }
-        if (name.length > 0 && tags.length > 0) { }
+
+        if (name.length > 0 && tags.length > 0) {
+            return this.searchByNameAndTags(name, tags);
+        }
+    }
+
+    searchByName(name) {
+        return this.images.filter((image) => {
+            return image.name == name;
+        });
+    }
+
+    searchByTags(tags) {
+        return this.images.filter((image) => {
+            hasTags = true;
+            tags.forEach(imgTag => {
+                found = false;
+                image.tags.forEach(imgTag => {
+                    if (tag == imgTag) found = true;
+                });
+                if (!found) hasTags = false;
+            });
+            return hasTags;
+        });
+    }
+
+    searchByNameAndTags(name, tags) {
+        return new VoidImageCollection(this.searchByName(name))
+            .searchByTags(tags);
     }
 }
 
@@ -54,10 +80,10 @@ class VoidImage {
     /**
      * @param {string[]} tags
      */
-    set addTags(tags) {
+    addTags(tags) {
         if (Array.isArray(tags)) {
             this.tags.concat(toString(tags));
         }
         this.tags.push(toString(tags));
     }
-}
+}ll
