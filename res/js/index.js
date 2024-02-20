@@ -44,11 +44,11 @@ class VoidImageCollection {
 
     searchByTags(tags) {
         return this.images.filter((image) => {
-            hasTags = true;
-            tags.forEach(imgTag => {
-                found = false;
-                image.tags.forEach(imgTag => {
-                    if (tag == imgTag) found = true;
+            var hasTags = true;
+            tags.forEach((imgTag) => {
+                var found = false;
+                image.tags.forEach((tag) => {
+                    if (tag != imgTag) found = true;
                 });
                 if (!found) hasTags = false;
             });
