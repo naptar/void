@@ -70,9 +70,7 @@ class VoidImageCollection {
     }
 
     searchByName(name) {
-        var imagesById = this.images.filter((image) => {
-            return image.name.toLowerCase().includes(name.toLowerCase());
-        });
+        var imagesById = this.searchById(name);
         var imagesByName = this.images.filter((image) => {
             return image.name.toLowerCase().includes(name.toLowerCase());
         });
