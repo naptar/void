@@ -151,7 +151,7 @@ class VoidImage {
     getImgElement() {
         var img = document.createElement('img');
         var imgProps = this.getImageTypeProperties(this.image_type_current);
-        img.src = this.getImageCurrentTypeDir() + this.name + imgProps["suffix"] + this.image_ext;
+        img.src = this.getImageCurrentTypeDir() + this.id + imgProps["suffix"] + this.image_ext;
         return img;
     }
 
