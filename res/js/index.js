@@ -133,7 +133,7 @@ window.addEventListener('load', function () {
 
     var div = document.getElementById("images");
 
-    imageCollection.forEach((image) => {
+    imageCollection.images.forEach((image) => {
         div.appendChild(image.getImgElement());
     });
 });
