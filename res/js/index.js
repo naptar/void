@@ -121,15 +121,19 @@ class VoidImage {
     }
 
     getImageCurrentTypeDir() {
-        return this.image_dir + "/" + this.image_type_current + "/";
+        return this.image_dir + this.image_type_current + "/";
     }
 
     getImageTypeProperties(type) {
         if (!type) return null;
 
-        return this.image_types.filter((imageType) => {
+        typeProps = this.image_types.filter((imageType) => {
             return imageType["name"] == type;
         });
+
+        if (!typeProps || typeProps.length == 0) return null;
+
+        return typeProps[0];
     }
 }
 
