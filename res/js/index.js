@@ -65,12 +65,12 @@ class VoidImageCollection {
 
     searchById(id) {
         return this.images.filter((image) => {
-            return toString(image.id).toLowerCase().includes(toString(id).toLowerCase());
+            return image.id.toString().toLowerCase().includes(id.toString().toLowerCase());
         });
     }
 
     searchByName(name) {
-        var imagesById = this.searchById(name);
+        var imagesById = this.searchById(name)
         var imagesByName = this.images.filter((image) => {
             return image.name.toLowerCase().includes(name.toLowerCase());
         });
