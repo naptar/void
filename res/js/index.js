@@ -19,7 +19,7 @@ class VoidImageCollection {
 
     addSingleImage(image) {
         if (typeof images != 'object') throw "tried to add a non-object to image list";
-        this.images.push(toString(images));
+        this.images.push(images);
     }
 
     search(name = "", tags = []) {
