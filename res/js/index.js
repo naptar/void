@@ -42,7 +42,7 @@ class VoidImageCollection {
 
     searchByName(name) {
         return this.images.filter((image) => {
-            return image.name == name;
+            return image.name.toLowerCase().includes(name.toLowerCase());
         });
     }
 
@@ -151,7 +151,7 @@ window.addEventListener('load', function () {
 
     var searchButton = document.getElementById("searchButton");
     searchButton.addEventListener('click', function () {
-        imageCollection.searchByName(searchBox.textContent).forEach((image) => {
+        imageCollection.searchByName(searchBox.value).forEach((image) => {
             div.appendChild(image.getImgElement());
         });
     });
