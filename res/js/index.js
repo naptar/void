@@ -147,8 +147,14 @@ window.addEventListener('load', function () {
     window.voidImageCollection = imageCollection;
 
     var div = document.getElementById("images");
+    var searchBox = document.getElementById("searchBox");
 
-    imageCollection.images.forEach((image) => {
-        div.appendChild(image.getImgElement());
+    var searchButton = document.getElementById("searchButton");
+    searchButton.addEventListener('click', function () {
+        imageCollection.searchByName(searchBox.textContent).forEach((image) => {
+            div.appendChild(image.getImgElement());
+        });
     });
+
 });
+
