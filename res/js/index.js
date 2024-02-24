@@ -151,6 +151,7 @@ window.addEventListener('load', function () {
 
     var searchButton = document.getElementById("searchButton");
     searchButton.addEventListener('click', function () {
+        div.innerHTML = "";
         imageCollection.searchByName(searchBox.value).forEach((image) => {
             div.appendChild(image.getImgElement());
         });
