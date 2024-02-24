@@ -127,7 +127,7 @@ class VoidImage {
     getImageTypeProperties(type) {
         if (!type) return null;
 
-        typeProps = this.image_types.filter((imageType) => {
+        var typeProps = this.image_types.filter((imageType) => {
             return imageType["name"] == type;
         });
 
