@@ -4,7 +4,7 @@ class VoidImageCollection {
     /**
      * @param {Image[]} images
      */
-    constructor(images) {
+    constructor(images = []) {
         this.images = images;
     }
 
