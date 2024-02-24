@@ -89,7 +89,7 @@ class VoidImage {
 }
 
 window.addEventListener('load', function () {
-   var imageCollection = VoidImageCollection();
+   var imageCollection = new VoidImageCollection();
    imageCollection.add(window.voidImageList);
    window.voidImageCollection = imageCollection;
 })
