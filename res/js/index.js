@@ -62,14 +62,27 @@ class VoidImageCollection {
 class VoidImage {
     name = "";
     tags = [];
+    image_dir = "res/img/";
+    image_ext = ".png";
+    image_type_default = "normal";
+    image_type_current = this.image_type_default;
+    image_types = [
+        {
+            "name": "normal",
+            "suffix": ""
+        },
+        {
+            "name": "big",
+            "suffix": "-big"
+        }
+    ];
     
-    #size_big_suffux = "-big";
-
     /**
      * @param {string} name
      * @param {string[]} tags
      */
-    constructor(name, tags) {
+    constructor(name, tags = []) {
+        if (!name) throw "why u make no name???";
         this.name = name;
         this.tags = tags;
     }
@@ -78,15 +91,49 @@ class VoidImage {
      * @param {string[]} tags
      */
     addTags(tags) {
+        if (!this.tags) this.tags = [];
+
         if (Array.isArray(tags)) {
-            this.tags.concat(toString(tags));
+            this.tags.concat(tags);
+            return;
         }
+
         this.tags.push(toString(tags));
+    }
+
+    setCurrentType(type) {
+        if (!type) return;
+
+    }
+
+    getImgElement() {
+        var img = document.createElement('img');
+        var imgProps = this.getImageTypeProperties(this.image_type_current);
+        img.src = this.getImageCurrentTypeDir() + this.name + imgProps["suffix"] + this.image_ext;
+        return img;
+    }
+
+    getImageCurrentTypeDir() {
+        return this.image_dir + "/" + this.image_type_current + "/";
+    }
+
+    getImageTypeProperties(type) {
+        if (!type) return null;
+
+        return this.image_types.filter((imageType) => {
+            return imageType["name"] == type;
+        });
     }
 }
 
 window.addEventListener('load', function () {
-   var imageCollection = new VoidImageCollection();
-   imageCollection.add(window.voidImageList);
-   window.voidImageCollection = imageCollection;
-})
+    var imageCollection = new VoidImageCollection();
+    imageCollection.add(new VoidImage(window.voidImageList));
+    window.voidImageCollection = imageCollection;
+
+    var div = document.getElementById("images");
+
+    imageCollection.forEach((image) => {
+        div.appendChild(image.getImgElement());
+    });
+});
