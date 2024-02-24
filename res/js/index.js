@@ -15,9 +15,9 @@ class VoidImageData {
             return imageName["id"] == id;
         });
 
-        if (!imageNames || imageNames.length == 0) return null;
+        if (!imageNames || imageNames.length == 0) return "NO_NAME_FOUND";
 
-        return imageNames[0];
+        return imageNames[0]["name"];
     }
 }
 
