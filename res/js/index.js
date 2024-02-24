@@ -192,4 +192,11 @@ window.addEventListener('load', function () {
             div.appendChild(image.getImgElement());
         });
     });
+
+    searchBox.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            searchButton.click();
+        }
+    });
 });
