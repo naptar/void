@@ -8,7 +8,7 @@ class VoidImageCollection {
         if (!this.images) this.images = []
 
         if (Array.isArray(images)) {
-            this.images.concat(toString(images));
+            this.images.concat(images);
         }
         this.images.push(toString(images));
     }
