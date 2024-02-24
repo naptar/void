@@ -124,7 +124,7 @@ class VoidImage {
         if (!id) throw "why u make no id???";
         if (!name) throw "why u make no name???";
 
-        this.id = name;
+        this.id = id;
         this.name = name;
         this.tags = tags;
     }
