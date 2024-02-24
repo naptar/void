@@ -8,10 +8,17 @@ class VoidImageCollection {
         if (!this.images) this.images = []
 
         if (Array.isArray(images)) {
-            this.images = this.images.concat(images);
+            images.forEach((image) => {
+                this.addSingleImage(image);
+            });
             return;
         }
 
+        this.addSingleImage(images);
+    }
+
+    addSingleImage(image) {
+        if (typeof images != 'object') throw "tried to add a non-object to image list";
         this.images.push(toString(images));
     }
 
@@ -128,7 +135,11 @@ class VoidImage {
 
 window.addEventListener('load', function () {
     var imageCollection = new VoidImageCollection();
-    imageCollection.add(new VoidImage(window.voidImageList));
+
+    this.window.voidImageList.forEach((voidImage) => {
+        imageCollection.add(new VoidImage(voidImage));
+    });
+
     window.voidImageCollection = imageCollection;
 
     var div = document.getElementById("images");
