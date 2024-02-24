@@ -4,14 +4,9 @@ class VoidImageCollection {
     /**
      * @param {Image[]} images
      */
-    constructor(images = []) {
-        this.images = images;
-    }
-
-    /**
-     * @param {Image[]} images
-     */
     add(images) {
+        if (!this.images) this.images = []
+
         if (Array.isArray(images)) {
             this.images.concat(toString(images));
         }

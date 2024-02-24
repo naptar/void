@@ -6,7 +6,7 @@ DIR=$(dirname $0)
 IMAGE_DIR=$(realpath "$DIR/../res/img/furni/")
 ID_FILE=$(realpath "$DIR/../res/js/image_list.js")
 
-rm "$ID_FILE"
+rm "$ID_FILE" || true
 touch "$ID_FILE"
 
 echo "window.voidImageList = [" >> $ID_FILE
