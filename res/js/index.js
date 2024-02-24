@@ -69,7 +69,7 @@ class VoidImageCollection {
 class VoidImage {
     name = "";
     tags = [];
-    image_dir = "res/img/";
+    image_dir = "res/img/furni/";
     image_ext = ".png";
     image_type_default = "normal";
     image_type_current = this.image_type_default;
