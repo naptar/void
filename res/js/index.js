@@ -87,3 +87,9 @@ class VoidImage {
         this.tags.push(toString(tags));
     }
 }
+
+window.addEventListener('load', function () {
+   var imageCollection = VoidImageCollection();
+   imageCollection.add(window.voidImageList);
+   window.voidImageCollection = imageCollection;
+})
