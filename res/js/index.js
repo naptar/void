@@ -1,3 +1,26 @@
+var currentSearchResults = [];
+
+class VoidImageData {
+    names = [];
+
+    constructor(names) {
+        this.names = names;
+    }
+
+    getName(id) {
+        if (!id) return null;
+        if (!this.names) return null;
+
+        var imageNames = this.names.filter((imageName) => {
+            return imageName["id"] == id;
+        });
+
+        if (!imageNames || imageNames.length == 0) return null;
+
+        return imageNames[0];
+    }
+}
+
 class VoidImageCollection {
     images = [];
 
@@ -40,10 +63,20 @@ class VoidImageCollection {
         }
     }
 
-    searchByName(name) {
+    searchById(id) {
         return this.images.filter((image) => {
+            return toString(image.id).toLowerCase().includes(toString(id).toLowerCase());
+        });
+    }
+
+    searchByName(name) {
+        var imagesById = this.images.filter((image) => {
             return image.name.toLowerCase().includes(name.toLowerCase());
         });
+        var imagesByName = this.images.filter((image) => {
+            return image.name.toLowerCase().includes(name.toLowerCase());
+        });
+        return imagesById.concat(imagesByName);
     }
 
     searchByTags(tags) {
@@ -85,11 +118,13 @@ class VoidImage {
     ];
     
     /**
-     * @param {string} name
-     * @param {string[]} tags
+     * @param {int} id
      */
-    constructor(name, tags = []) {
+    constructor(id, name, tags = []) {
+        if (!id) throw "why u make no id???";
         if (!name) throw "why u make no name???";
+
+        this.id = name;
         this.name = name;
         this.tags = tags;
     }
@@ -139,9 +174,10 @@ class VoidImage {
 
 window.addEventListener('load', function () {
     var imageCollection = new VoidImageCollection();
+    var imageData = new VoidImageData(window.imageDataNames);
 
-    this.window.voidImageList.forEach((voidImage) => {
-        imageCollection.add(new VoidImage(voidImage));
+    this.window.voidImageList.forEach((voidImageId) => {
+        imageCollection.add(new VoidImage(voidImageId, imageData.getName(voidImageId)));
     });
 
     window.voidImageCollection = imageCollection;
@@ -152,10 +188,9 @@ window.addEventListener('load', function () {
     var searchButton = document.getElementById("searchButton");
     searchButton.addEventListener('click', function () {
         div.innerHTML = "";
-        imageCollection.searchByName(searchBox.value).forEach((image) => {
+        currentSearchResults = imageCollection.searchByName(searchBox.value);
+        currentSearchResults.forEach((image) => {
             div.appendChild(image.getImgElement());
         });
     });
-
 });
-
